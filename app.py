@@ -42,6 +42,12 @@ def load_model():
 def load_featurizer():
     return dc.feat.MolGraphConvFeaturizer(use_edges=True)
 
+def canonical_smiles(smiles: str, *, isomeric: bool = True) -> str:
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is None:
+        raise ValueError(f"Invalid SMILES: {smiles!r}")
+    return Chem.MolToSmiles(mol, canonical=True, isomericSmiles=isomeric)
+
 def predict_spectrum(model, featurizer, smiles):
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
@@ -157,7 +163,8 @@ def main():
     model = load_model()
     featurizer = load_featurizer()
 
-    smiles = st.text_input("Enter SMILES", value="")
+    input_smiles = st.text_input("Enter SMILES", value="")
+    smiles = canonical_smiles(input_smiles)
 
     col1, col2, col3 = st.columns(3)
     plot_clicked = col1.button("Plot Graph")
