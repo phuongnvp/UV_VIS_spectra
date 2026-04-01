@@ -13,10 +13,6 @@ from rdkit.Chem import Draw
 from rdkit.Chem.Draw import SimilarityMaps
 from PIL import Image
 
-
-# -----------------------------
-# Configuration
-# -----------------------------
 MODEL_DIR = "./"
 N_TASKS = 481
 
