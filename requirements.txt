@@ -14,3 +14,4 @@ dgl -f https://data.dgl.ai/wheels/torch-2.4/repo.html
 dgllife==0.3.2
 pillow==11.3.0
 scikit-learn==1.6.1
+transformers==4.57.6
