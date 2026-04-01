@@ -8,6 +8,7 @@ from scipy.signal import savgol_filter
 
 import torch
 import deepchem as dc
+from deepchem.models.torch_models import AttentiveFPModel
 from rdkit import Chem
 from rdkit.Chem import Draw
 from rdkit.Chem.Draw import SimilarityMaps
@@ -23,7 +24,7 @@ N_TASKS = 481
 
 @st.cache_resource
 def load_model():
-    model = dc.models.AttentiveFPModel(
+    model = AttentiveFPModel(
         n_tasks=N_TASKS,
         mode="regression",
         num_layers=3,
